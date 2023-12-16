@@ -79,15 +79,15 @@ export class CanvasAnimation {
       assets: [
         {
           name: 'Cloud 01',
-          src: '/assets/banner/cloud_01.png',
+          src: import.meta.env.BASE_URL + '/assets/banner/cloud_01.png',
         },
         {
           name: 'Cloud 02',
-          src: '/assets/banner/cloud_02.png',
+          src: import.meta.env.BASE_URL + '/assets/banner/cloud_02.png',
         },
         {
           name: 'Cloud 03',
-          src: '/assets/banner/cloud_03.png',
+          src: import.meta.env.BASE_URL + '/assets/banner/cloud_03.png',
         },
       ],
       camera: {
