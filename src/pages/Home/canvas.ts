@@ -136,25 +136,28 @@ export class CanvasAnimation {
     this.runTimeStepFixed = this.runTimeStepFixed.bind(this);
   }
 
-  init() {
-    utils.loadAssets(
-      this.state.assets,
-      function () {
-        console.log('Assets is being loaded ...');
-      },
-      data => {
-        console.log('All assets are loaded');
-        this.state.data = data;
-        this.run();
-      },
-    );
+  async init() {
+    return new Promise<void>(res => {
+      utils.loadAssets(
+        this.state.assets,
+        function () {
+          console.log('Assets is being loaded ...');
+        },
+        data => {
+          console.log('All assets are loaded');
+          this.state.data = data;
+          this.run();
+          res();
+        },
+      );
 
-    window.addEventListener('mousedown', () => {
-      this.state.isMouseDown = 1;
-    });
-    window.addEventListener('mouseup', () => {
-      this.state.isMouseDown = 0;
-    });
+      window.addEventListener('mousedown', () => {
+        this.state.isMouseDown = 1;
+      });
+      window.addEventListener('mouseup', () => {
+        this.state.isMouseDown = 0;
+      });
+    })
   }
 
   destroy() {

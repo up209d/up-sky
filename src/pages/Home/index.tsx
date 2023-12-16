@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import CanvasAnimation from './canvas.ts';
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 
 export const Wrapper = styled.div`
   width: 100vw;
@@ -27,6 +27,7 @@ export const Title = styled.h1`
 `;
 
 export default function Home() {
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         const canvasAnimation = new CanvasAnimation({
             width: window.innerWidth,
@@ -35,7 +36,7 @@ export default function Home() {
             fps: 60,
             step: 1 / 60,
         });
-        canvasAnimation.init();
+        canvasAnimation.init().then(() => setIsLoading(false));
         const resizeHandler = () => {
             canvasAnimation.updateSize(window.innerWidth, window.innerHeight);
         };
@@ -50,7 +51,7 @@ export default function Home() {
     return (
         <Wrapper>
             <Canvas id={`renderer`} width={window.innerWidth} height={window.innerHeight} />
-            <Title>UP Canvas Sky - Pseudo 3D Environment</Title>
+            <Title>{isLoading ? 'LOADING...' : 'UP Canvas Sky - Pseudo 3D Environment'}</Title>
         </Wrapper>
     );
 }
