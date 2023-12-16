@@ -5,7 +5,27 @@ import { useEffect } from 'react';
 export const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
 `;
+
+export const Canvas = styled.canvas`
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+`;
+
+export const Title = styled.h1`
+  font-size: calc(100vw / 30);
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+  font-weight: 100;
+`;
+
 export default function Home() {
     useEffect(() => {
         const canvasAnimation = new CanvasAnimation({
@@ -29,7 +49,8 @@ export default function Home() {
     }, []);
     return (
         <Wrapper>
-            <canvas id={`renderer`} width={window.innerWidth} height={window.innerHeight} />
+            <Canvas id={`renderer`} width={window.innerWidth} height={window.innerHeight} />
+            <Title>UP Canvas Sky - Pseudo 3D Environment</Title>
         </Wrapper>
     );
 }
